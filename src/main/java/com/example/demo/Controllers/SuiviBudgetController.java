@@ -27,7 +27,7 @@ public class SuiviBudgetController {
     public  SuiviBudget modifierSuiviBudget( @RequestBody SuiviBudget sb ,@PathVariable  Long idcompte,@PathVariable Long idetat ){
         return suiviBudgetService.modifierSuiviBudget(sb,idcompte,idetat);
     }
-    @GetMapping("/budgetEnAttente/{idStructure}/{idetat}")
+    @GetMapping("/BudgetEnAttente/{idStructure}/{idetat}")
     public Collection<SuiviBudget> getBudgetEnAttenteStructure(@PathVariable Long idStructure,@PathVariable Long idetat){
         return suiviBudgetRepository.findSuiviBudgetByEtatBudget(idStructure,idetat);
     }
@@ -62,9 +62,10 @@ public class SuiviBudgetController {
     public Budget validerBudgetParDcgFin(@RequestBody Budget b){
         return  suiviBudgetService.validerBudgetparDcgFin(b);
     }
+    /*
      @PostMapping("/rejeterParDcg/{idbudget}")
     public SuiviBudget rejeterBudgetParDcg(@RequestBody SuiviBudget s,@PathVariable Long idbudget){
         return suiviBudgetService.rejeterBudgetparDcg(s,idbudget);
-    }
+    } */
 
 }
