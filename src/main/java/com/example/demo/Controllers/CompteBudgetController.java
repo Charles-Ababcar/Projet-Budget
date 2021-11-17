@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping
+@RequestMapping("/apiCompteBudget")
 public class CompteBudgetController {
     @Autowired
     CompteBudgetRepository compteBudgetRepository;
