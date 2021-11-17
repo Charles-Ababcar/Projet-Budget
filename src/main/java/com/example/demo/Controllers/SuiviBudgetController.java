@@ -12,7 +12,7 @@ import java.util.Collection;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/apiSuivibudget")
+@RequestMapping("/apiSuiviBudget")
 public class SuiviBudgetController {
     @Autowired
     SuiviBudgetService suiviBudgetService;
