@@ -18,10 +18,10 @@ public class Action implements Serializable {
         @JsonIgnore
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "etatActuel", nullable = false, referencedColumnName = "id")
-        private Etat etat;
+        private Etat Etat;
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "etatFinal", nullable = false, referencedColumnName = "id")
-        private Etat etat1;
+        private Etat Etat1;
         private String libelle;
         private int codeTypeAction;
         private String libelleAction;

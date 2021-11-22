@@ -33,7 +33,7 @@ public class BudgetController {
     }
 
     @GetMapping("/budgetDRP/{idDRP}/{annee}/{etat}")
-    public Budget getBudgetDRPById(@PathVariable Long idDRP,@PathVariable Long annee, @PathVariable Long etat){
+    public Budget getBudgetDRPById(@PathVariable Long idDRP, @PathVariable Long annee, @PathVariable Long etat){
         return budgetRepository.findBudgetDRPByIdAndAnnee(idDRP,annee,etat);
     }
     @GetMapping("/annee/{idStructure}")
@@ -46,7 +46,7 @@ public class BudgetController {
         return budgetService.somme(montant,sum);
     }
     @GetMapping("/bureaux/{idDrp}/{annee}")
-    public Collection<Budget> getBureaux(@PathVariable  long idDrp,@PathVariable Long annee){
+    public Collection<Budget> getBureaux(@PathVariable  long idDrp, @PathVariable Long annee){
         return  budgetRepository.findAllBureauByDRP(idDrp,annee);
     }
     @PostMapping("/addBudget/{idStructure}")
@@ -55,7 +55,7 @@ public class BudgetController {
     }
 
     @PutMapping("/modifierBudget/{idStructure}")
-    public  Budget modifierBudget(@RequestBody Budget b,@RequestBody long idStructure){
+    public Budget modifierBudget(@RequestBody Budget b, @RequestBody long idStructure){
         return budgetService.saveBudget(b,idStructure);
     }
     @GetMapping("/budget")

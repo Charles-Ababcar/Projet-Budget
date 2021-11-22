@@ -30,18 +30,18 @@ public class Structure implements Serializable {
     private String longitude;
     private String latitude;
     @OneToMany
-    private Collection<Budget> budgets;
+    private Collection<Budget> Budgets;
     @ManyToOne
     @JoinColumn(name ="idDrp", referencedColumnName = "id")
-    private DRP drp;
+    private DRP Drp;
     @OneToMany(mappedBy = "structure")
-    private Collection<Budget> budget;
+    private Collection<Budget> Budget;
 
     public Collection<Budget> getBudget() {
-        return budget;
+        return Budget;
     }
 
-    public void setBudget(Collection<Budget> budget) {
-        this.budget = budget;
+    public void setBudget(Collection<Budget> dbBudget) {
+        this.Budget = dbBudget;
     }
 }

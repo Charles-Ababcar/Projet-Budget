@@ -29,10 +29,10 @@ public class Decaissement implements Serializable {
     private String justificatif;
     @JsonIgnore
     @OneToMany
-    private Collection<Suivi> suivis;
+    private Collection<Suivi> Suivis;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idLigneBudgetaire", nullable = false, referencedColumnName = "id")
-    private LigneBudgetaire ligneBudgetaires;
+    private LigneBudgetaire LigneBudgetaires;
 
 }

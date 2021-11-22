@@ -26,5 +26,5 @@ public class LigneBudgetaire implements Serializable {
     private Budget budget;
     @ManyToOne
     @JoinColumn(name ="idCompteBudget", nullable = false, referencedColumnName = "id")
-    private CompteBudget compteBudget;
+    private CompteBudget CompteBudget;
 }

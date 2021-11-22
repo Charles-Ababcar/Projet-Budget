@@ -22,7 +22,7 @@ public class CompteBudget implements Serializable {
     private int numero;
     private int comptejde;
     @OneToMany()
-    private Collection<LigneBudgetaire> ligneBudgetaires;
+    private Collection<LigneBudgetaire> LigneBudgetaires;
 
 
 }

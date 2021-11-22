@@ -26,13 +26,13 @@ public class Budget implements Serializable {
     private Double montant_execute;
     @JsonIgnore
     @OneToMany(mappedBy = "budget")
-    private Collection<SuiviBudget>  suiviBudgets;
+    private Collection<SuiviBudget> SuiviBudgets;
     @ManyToOne
     @JoinColumn(name ="idStructure", referencedColumnName = "id")
     private Structure structure;
     @JsonIgnore
     @OneToMany(mappedBy = "budget")
     //changer récement
-    private Collection<LigneBudgetaire> ligneBudgetaires;
+    private Collection<LigneBudgetaire> LigneBudgetaires;
 
 }

@@ -24,4 +24,14 @@ public class DRP implements Serializable {
     private Collection<Structure> structures;
 
 
+    @OneToMany(mappedBy = "Drp")
+    private Collection<Structure> structure;
+
+    public Collection<Structure> getStructure() {
+        return structure;
+    }
+
+    public void setStructure(Collection<Structure> structure) {
+        this.structure = structure;
+    }
 }

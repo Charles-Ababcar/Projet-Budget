@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.IllegalFormatCodePointException;
 
 @RestController
 @CrossOrigin("*")
@@ -29,8 +28,8 @@ public class DecaissementController {
         if(multipartFile != null){
             String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             d.setJustificatif(filename);
-            Decaissement saveDecaissement= decaissementService.saveDecaissement(d,idLigne,montant);
-            String uploaDir="Decaissements-justifications/"+ saveDecaissement.getId();
+            Decaissement saveDbDecaissement = decaissementService.saveDecaissement(d,idLigne,montant);
+            String uploaDir="Decaissements-justifications/"+ saveDbDecaissement.getId();
 
             FileUploadUtil.saveFile(uploaDir,filename,multipartFile);
 
@@ -43,31 +42,31 @@ public class DecaissementController {
     }
 
     @PostMapping("/addSuivi/{idDecais}/{idEtat}")
-    public Suivi addSuivi(Suivi s ,@PathVariable Long idDecais,@PathVariable Long idEtat){
+    public Suivi addSuivi(Suivi s , @PathVariable Long idDecais, @PathVariable Long idEtat){
         return  decaissementService.saveSuivi(s,idDecais,idEtat);
 
     }
 
     //Depenses en Attente
     @GetMapping("/depenses/{iddecaissement}/{idetat}")
-    public Collection<Decaissement> getDepenses(@PathVariable  Long  iddecaissement,@PathVariable Long idetat){
+    public Collection<Decaissement> getDepenses(@PathVariable  Long  iddecaissement, @PathVariable Long idetat){
         return  decaissementRepository.findDecaissementByEtat(iddecaissement,idetat);
     }
 
     //Depenses
     @GetMapping("/depensesByCompte/{num}/{idbudget}/{idetat}")
-    public Collection<Decaissement> getDepensesByCompte(@PathVariable Long num,@PathVariable Long idbudget,@PathVariable Long idetat){
+    public Collection<Decaissement> getDepensesByCompte(@PathVariable Long num, @PathVariable Long idbudget, @PathVariable Long idetat){
         return decaissementRepository.findDecaissementByCompteAndEtat(num,idbudget,idetat);
     }
     //Depenses en Attente selon la structure
     @GetMapping("/depensesAttentesStructure/{idStructure}/{idetat}")
-    public Collection<Decaissement> getDepenseEnAttente(@PathVariable Long idStructure,@PathVariable Long idetat){
+    public Collection<Decaissement> getDepenseEnAttente(@PathVariable Long idStructure, @PathVariable Long idetat){
         return decaissementRepository.findDecaissementByStructureAndEtat(idStructure,idetat);
     }
 
     //Depenses en Attente pour une DRP X
     @GetMapping("/DepensesEnAttenteDrp/{iddrp}/{idetat}")
-    public Collection<Decaissement> getDepensesEnAttenteDCG(@PathVariable Long iddrp,@PathVariable Long idetat) {
+    public Collection<Decaissement> getDepensesEnAttenteDCG(@PathVariable Long iddrp, @PathVariable Long idetat) {
         return decaissementRepository.findAllDecaissementEnAttenteDrp(iddrp,idetat);
     }
 

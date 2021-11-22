@@ -21,5 +21,5 @@ public class Etat implements Serializable {
     private String libelle;
     @JsonIgnore
     @OneToMany(mappedBy = "etat")
-    private Collection<Suivi> suivis;
+    private Collection<Suivi> Suivis;
 }

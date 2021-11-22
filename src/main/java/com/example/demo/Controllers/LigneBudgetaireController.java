@@ -18,20 +18,20 @@ public class LigneBudgetaireController {
     LigneBudgetaireService ligneBudgetaireService;
 
     @PostMapping("/addLigneBudget/{idbudget}/{idcompte}")
-    public LigneBudgetaire ajoutLigneBudget(@RequestBody LigneBudgetaire l,@PathVariable long idbudget,@PathVariable long idcompte){
+    public LigneBudgetaire ajoutLigneBudget(@RequestBody LigneBudgetaire l, @PathVariable long idbudget, @PathVariable long idcompte){
         return ligneBudgetaireService.saveLigneBudgetaire(l,idbudget,idcompte);
     }
     @PutMapping("/modifierLigneBudget/{idbudget}/{idcompte}")
-    public LigneBudgetaire modifierLigneBudget(@RequestBody LigneBudgetaire l,@PathVariable long idbudget,@PathVariable long idcompte){
+    public LigneBudgetaire modifierLigneBudget(@RequestBody LigneBudgetaire l, @PathVariable long idbudget, @PathVariable long idcompte){
         return ligneBudgetaireService.saveLigneBudgetaire(l,idbudget,idcompte);
     }
     @GetMapping("/budgetParCompte/{idbudget}/{idetat}")
-    public Collection<LigneBudgetaire> lignes(@PathVariable Long idbudget,@PathVariable Long idetat){
+    public Collection<LigneBudgetaire> lignes(@PathVariable Long idbudget, @PathVariable Long idetat){
         return ligneBudgetaireRepository.findAllBudgetByCompteBudget(idbudget,idetat);
     }
 
     @GetMapping("/budgetUnCompte/{idbudget}/{num}/{idetat}")
-    public Collection<LigneBudgetaire> lignes(@PathVariable Long idbudget,@PathVariable Long num,@PathVariable Long idetat){
+    public Collection<LigneBudgetaire> lignes(@PathVariable Long idbudget, @PathVariable Long num, @PathVariable Long idetat){
         return ligneBudgetaireRepository.findBudgetByCompteBudget(idbudget,num,idetat);
     }
 

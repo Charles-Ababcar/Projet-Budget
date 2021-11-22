@@ -21,7 +21,7 @@ public interface BudgetRepository extends JpaRepository<Budget,Long> {
             " LEFT JOIN drp AS d ON d.id=s.id_drp" +
             " LEFT JOIN suivi_budget AS sb ON sb.id_budget= bd.id " +
             " WHERE annee=:annee AND s.bureau=2 AND sb.id_etat_budget=:etat AND s.id_drp=:iddrp " , nativeQuery = true)
-    public Budget findBudgetDRPByIdAndAnnee(@Param("iddrp")Long id,@Param("annee")Long annee,@Param("etat")Long etat);
+    public Budget findBudgetDRPByIdAndAnnee(@Param("iddrp")Long id, @Param("annee")Long annee, @Param("etat")Long etat);
 
 
     @Query(value = " SELECT * FROM budget " +
@@ -33,7 +33,7 @@ public interface BudgetRepository extends JpaRepository<Budget,Long> {
             " LEFT JOIN structure AS s ON s.id=bd.id_structure " +
             " LEFT JOIN suivi_budget AS sb ON bd.id=sb.id_budget  " +
             " WHERE annee=:annee AND s.id_drp=:id AND bureau=1 AND sb.id_etat_budget=4 ", nativeQuery = true)
-    public Collection<Budget> findAllBureauByDRP(@Param("id")long id,@Param("annee")Long annee);
+    public Collection<Budget> findAllBureauByDRP(@Param("id")long id, @Param("annee")Long annee);
 
     //Liste DRP avec leur Budget
     @Query(value = "SELECT * FROM budget AS bd " +

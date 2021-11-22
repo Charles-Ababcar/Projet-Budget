@@ -22,7 +22,7 @@ public class Suivi implements Serializable {
     private Date date;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private Decaissement decaissement;
+    private Decaissement Decaissement;
     @ManyToOne
     @JoinColumn(name ="idEtat", referencedColumnName = "id")
     private Etat etat;

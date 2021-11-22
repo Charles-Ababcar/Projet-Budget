@@ -24,7 +24,7 @@ public interface SuiviBudgetRepository extends JpaRepository<SuiviBudget,Long> {
             " LEFT JOIN drp AS d ON d.id=s.id_drp" +
             " WHERE d.id=:iddrp AND annee=2021 AND s.bureau=1 " +
             " GROUP BY  bd.id HAVING MAX(sb.id_etat_budget)=:idetat " , nativeQuery = true)
-    public Collection<SuiviBudget> findSuiviBudgetStructureByEtatBudget(@Param("iddrp")long iddrp,@Param("idetat")long id);
+    public Collection<SuiviBudget> findSuiviBudgetStructureByEtatBudget(@Param("iddrp")long iddrp, @Param("idetat")long id);
 
     //Budget des buraux en attente de validation par la DRP
     @Query(value = " SELECT * FROM suivi_budget AS sb LEFT JOIN budget AS bd ON sb.id_budget= bd.id " +

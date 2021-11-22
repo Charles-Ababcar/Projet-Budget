@@ -20,19 +20,19 @@ public class SuiviBudgetController {
     SuiviBudgetRepository suiviBudgetRepository;
 
     @PostMapping("/addSuiviBudget/{idbudget}/{idetat}")
-    public SuiviBudget ajoutSuiviBudget(@RequestBody SuiviBudget sb,@PathVariable Long idbudget,@PathVariable Long idetat){
+    public SuiviBudget ajoutSuiviBudget(@RequestBody SuiviBudget sb, @PathVariable Long idbudget, @PathVariable Long idetat){
         return  suiviBudgetService.addsuiviBudget(sb,idbudget,idetat);
     }
     @PutMapping("/modifierSuiviBudget/{idcompte}/{idetat}")
-    public  SuiviBudget modifierSuiviBudget( @RequestBody SuiviBudget sb ,@PathVariable  Long idcompte,@PathVariable Long idetat ){
+    public SuiviBudget modifierSuiviBudget(@RequestBody SuiviBudget sb , @PathVariable  Long idcompte, @PathVariable Long idetat ){
         return suiviBudgetService.modifierSuiviBudget(sb,idcompte,idetat);
     }
     @GetMapping("/BudgetEnAttente/{idStructure}/{idetat}")
-    public Collection<SuiviBudget> getBudgetEnAttenteStructure(@PathVariable Long idStructure,@PathVariable Long idetat){
+    public Collection<SuiviBudget> getBudgetEnAttenteStructure(@PathVariable Long idStructure, @PathVariable Long idetat){
         return suiviBudgetRepository.findSuiviBudgetByEtatBudget(idStructure,idetat);
     }
     @GetMapping("/BudgetBureauxEnAttente/{iddrp}/{idetat}")
-    public Collection<SuiviBudget> getBudgetBureauEnAttente(@PathVariable Long iddrp,@PathVariable Long idetat){
+    public Collection<SuiviBudget> getBudgetBureauEnAttente(@PathVariable Long iddrp, @PathVariable Long idetat){
         return suiviBudgetRepository.findSuiviBudgetStructureByEtatBudget(iddrp,idetat);
     }
     @GetMapping("/BudgetDrpEnAttente/{iddrp}")
@@ -50,11 +50,11 @@ public class SuiviBudgetController {
         return  suiviBudgetRepository.validerBudgetParDrp(idbudget);
     }
     @PostMapping("/rejeterParDrp/{idbudget}")
-    public SuiviBudget rejeterBudgetParDrp(@RequestBody SuiviBudget s,@PathVariable Long idbudget){
+    public SuiviBudget rejeterBudgetParDrp(@RequestBody SuiviBudget s, @PathVariable Long idbudget){
         return  suiviBudgetService.rejeterBudgetparDrp(s,idbudget);
     }
     @PostMapping("/validerParDcg/{idbudget}")
-    public SuiviBudget validerBudgetParDcg(@RequestBody SuiviBudget s,@PathVariable Long idbudget){
+    public SuiviBudget validerBudgetParDcg(@RequestBody SuiviBudget s, @PathVariable Long idbudget){
 
         return  suiviBudgetService.validerBudgetparDcg(s,idbudget)  ;
     }
