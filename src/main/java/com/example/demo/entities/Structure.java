@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,9 +32,11 @@ public class Structure implements Serializable {
     private String latitude;
     @OneToMany
     private Collection<Budget> Budgets;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name ="idDrp", referencedColumnName = "id")
     private DRP Drp;
+
     @OneToMany(mappedBy = "structure")
     private Collection<Budget> Budget;
 

@@ -15,7 +15,7 @@ public interface CompteBudgetRepository extends JpaRepository<CompteBudget,Long>
     @Query(value = "SELECT * FROM compte_budget AS c LEFT JOIN ligne_budgetaire AS l ON c.id=l.id_compte_budget" +
             " LEFT JOIN suivi_budget AS s ON s.id_budget=l.id_budget" +
             " WHERE c.bureau=1 GROUP BY c.numero", nativeQuery = true)
-    Collection<CompteBudget> findAllByBureau();
+    public Collection<CompteBudget> findAllByBureau();
 
     //Liste des comptes  pour une structure X(DRP ou Bureau)
     @Query(value = "SELECT * FROM compte_budget WHERE bureau=:bureau OR bureau=:bureau1", nativeQuery = true)

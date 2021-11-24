@@ -24,6 +24,6 @@ public class KeycloakSecurity extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http.authorizeRequests().antMatchers("/apiAllocation/**").hasAuthority("DRP");
+        http.authorizeRequests().antMatchers("/apiAllocation/**").hasAuthority("ROLE_DRP");
     }
 }

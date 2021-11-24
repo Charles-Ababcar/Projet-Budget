@@ -27,6 +27,7 @@ public class Budget implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "budget")
     private Collection<SuiviBudget> SuiviBudgets;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name ="idStructure", referencedColumnName = "id")
     private Structure structure;
