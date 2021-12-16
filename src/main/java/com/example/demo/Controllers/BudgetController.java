@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
-
+@CrossOrigin("*")
 @RequestMapping("/apiBudget")
 public class BudgetController {
     @Autowired
@@ -28,8 +29,8 @@ public class BudgetController {
     LigneBudgetaireService ligneBudgetaireService;
 
     @GetMapping("/budget/{idStructure}/{annee}")
-    public Budget getBudgetByIdStructure(@PathVariable Long idStructure, @PathVariable Long annee){
-        return budgetRepository.findBudgetByIdAndAnnee(idStructure,annee);
+    public List<Budget> getBudgetByIdStructure(@PathVariable("idStructure") Long id, @PathVariable("annee") Long annee){
+        return (List<Budget>) budgetRepository.findAllBudgetByIdAndAnnee(id,annee);
     }
 
     @GetMapping("/budgetDRP/{idDRP}/{annee}/{etat}")
@@ -50,12 +51,12 @@ public class BudgetController {
         return  budgetRepository.findAllBureauByDRP(idDrp,annee);
     }
     @PostMapping("/addBudget/{idStructure}")
-    public Budget ajoutBudget(@RequestBody Budget b, @PathVariable long idStructure){
+    public Budget ajoutBudget(@RequestBody Budget b, @PathVariable("idStructure") long idStructure ){
         return budgetService.saveBudget(b,idStructure);
     }
 
     @PutMapping("/modifierBudget/{idStructure}")
-    public Budget modifierBudget(@RequestBody Budget b, @RequestBody long idStructure){
+    public Budget modifierBudget(@RequestBody Budget b, @PathVariable("idStructure") long idStructure){
         return budgetService.saveBudget(b,idStructure);
     }
     @GetMapping("/budget")

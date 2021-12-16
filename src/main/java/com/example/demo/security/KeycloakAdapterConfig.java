@@ -1,3 +1,4 @@
+/*
 package com.example.demo.security;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
@@ -11,3 +12,5 @@ public class KeycloakAdapterConfig {
         return  new KeycloakSpringBootConfigResolver();
     }
 }
+
+ */

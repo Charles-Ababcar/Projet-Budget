@@ -7,14 +7,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Collection;
+import java.util.List;
 
 @RepositoryRestResource
 public interface BudgetRepository extends JpaRepository<Budget,Long> {
     //Budget d'un bureau Y et d'une année X
-    @Query(value = "SELECT * FROM budget AS bd LEFT JOIN structure AS s ON s.id=bd.id_structure " +
-            " LEFT JOIN suivi_budget AS sb ON sb.id_budget= bd.id " +
-            " WHERE bd.id_structure=:idstructure AND annee=:annee AND sb.id_etat_budget=4 " , nativeQuery = true)
-    public Budget findBudgetByIdAndAnnee(@Param("idstructure")Long id, @Param("annee")Long annee);
+    @Query(value = "SELECT * FROM budget AS bd, structure AS s WHERE bd.id_structure=:idstructure AND bd.annee=:annee AND s.id=bd.id_structure " , nativeQuery = true)
+    public List<Budget> findAllBudgetByIdAndAnnee(@Param("idstructure")Long id, @Param("annee")Long annee);
 
     @Query(value = "SELECT * FROM budget AS bd" +
             " LEFT JOIN structure AS s ON s.id=bd.id_structure " +
@@ -44,6 +43,7 @@ public interface BudgetRepository extends JpaRepository<Budget,Long> {
             " WHERE annee=2021" +
             " GROUP BY d.id " , nativeQuery = true)
     public Collection<Budget> findBudgetAllDRP();
+
 }
 
 

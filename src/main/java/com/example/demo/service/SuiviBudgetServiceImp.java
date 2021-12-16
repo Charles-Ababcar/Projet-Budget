@@ -6,6 +6,7 @@ import com.example.demo.entities.SuiviBudget;
 import com.example.demo.repository.BudgetRepository;
 import com.example.demo.repository.EtatBudgetRepository;
 import com.example.demo.repository.SuiviBudgetRepository;
+import com.example.demo.repository.SuiviRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,17 +35,31 @@ public class SuiviBudgetServiceImp implements SuiviBudgetService {
         Date date = new Date();
         sb.setDate(date);
         return suiviBudgetRepository.save(sb);
+
     }
 
     @Override
-    public SuiviBudget modifierSuiviBudget(SuiviBudget sb, Long idbudget, Long idEtat) {
-        Optional<Budget> b= budgetRepository.findById(idbudget);
+    public SuiviBudget modifierSuiviBudget(SuiviBudget sb,Long idetat, Long idbudget) {
+        System.out.print(sb);
+        /*
+        Optional<Budget> b =budgetRepository.findById(idbudget);
         sb.setBudget(b.get());
-        Optional<EtatBudget> eb= etatBudgetRepository.findById(idEtat);
+        Optional<EtatBudget> eb=etatBudgetRepository.findById(idetat);
         sb.setEtatBudget(eb.get());
-        Date date= new Date();
+        Date date = new Date();
         sb.setDate(date);
         return suiviBudgetRepository.save(sb);
+         */
+
+        SuiviBudget suivi=suiviBudgetRepository.findByBudget_Id(idbudget);
+
+        suivi.setEtatBudget(sb.getEtatBudget());
+        return suiviBudgetRepository.save(suivi);
+
+
+
+
+
     }
 
     @Override

@@ -20,7 +20,7 @@ public class LigneBudgetaire implements Serializable {
     private Double montantExecute;
     private Double montantProposeBureau;
     private Double montantProposeDrp;
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name ="idBudget", nullable = false, referencedColumnName = "id")
     private Budget budget;

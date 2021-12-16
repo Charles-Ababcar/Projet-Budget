@@ -1,3 +1,4 @@
+/*
 package com.example.demo.security;
 
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
@@ -27,3 +28,5 @@ public class KeycloakSecurity extends KeycloakWebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/apiAllocation/**").hasAuthority("ROLE_DRP");
     }
 }
+*/
+

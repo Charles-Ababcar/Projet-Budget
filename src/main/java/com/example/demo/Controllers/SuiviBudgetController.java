@@ -23,9 +23,9 @@ public class SuiviBudgetController {
     public SuiviBudget ajoutSuiviBudget(@RequestBody SuiviBudget sb, @PathVariable Long idbudget, @PathVariable Long idetat){
         return  suiviBudgetService.addsuiviBudget(sb,idbudget,idetat);
     }
-    @PutMapping("/modifierSuiviBudget/{idcompte}/{idetat}")
-    public SuiviBudget modifierSuiviBudget(@RequestBody SuiviBudget sb , @PathVariable  Long idcompte, @PathVariable Long idetat ){
-        return suiviBudgetService.modifierSuiviBudget(sb,idcompte,idetat);
+    @PutMapping("/modifierSuiviBudget/{idbudget}/{idetat}")
+    public SuiviBudget modifierSuiviBudget(@RequestBody SuiviBudget sb , @PathVariable("idbudget")  Long idbudget, @PathVariable Long idetat ){
+        return suiviBudgetService.modifierSuiviBudget(sb,idbudget,idetat);
     }
     @GetMapping("/BudgetEnAttente/{idStructure}/{idetat}")
     public Collection<SuiviBudget> getBudgetEnAttenteStructure(@PathVariable Long idStructure, @PathVariable Long idetat){
@@ -38,7 +38,6 @@ public class SuiviBudgetController {
     @GetMapping("/BudgetDrpEnAttente/{iddrp}")
     public Collection<SuiviBudget> getBudgetDrpEnAttente(@PathVariable Long iddrp){
         return suiviBudgetRepository.findBudgetbyDrp(iddrp);
-
     }
 
     @GetMapping("/BudgetEnAttenteDRP")

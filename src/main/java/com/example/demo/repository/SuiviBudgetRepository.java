@@ -10,6 +10,10 @@ import java.util.Collection;
 
 @RepositoryRestResource
 public interface SuiviBudgetRepository extends JpaRepository<SuiviBudget,Long> {
+
+  public SuiviBudget findByBudget_Id(long idBudget);
+
+
     //Budget en attente de validation par la Structure
     @Query(value = "SELECT * FROM suivi_budget AS sb LEFT JOIN budget AS bd ON sb.id_budget= bd.id " +
             "LEFT JOIN structure AS s ON s.id=bd.id_structure" +
@@ -17,6 +21,7 @@ public interface SuiviBudgetRepository extends JpaRepository<SuiviBudget,Long> {
             " WHERE bd.id_structure=:idstructure AND annee=2021 " +
             " GROUP BY  bd.id HAVING MAX(sb.id_etat_budget)=:idetat " , nativeQuery = true)
     public Collection<SuiviBudget> findSuiviBudgetByEtatBudget(@Param("idstructure")long idStructure, @Param("idetat")long id);
+
 
     //Budget en attente de validation par la DRP
     @Query(value = "SELECT * FROM suivi_budget AS sb LEFT JOIN budget AS bd ON sb.id_budget= bd.id " +
@@ -27,10 +32,14 @@ public interface SuiviBudgetRepository extends JpaRepository<SuiviBudget,Long> {
     public Collection<SuiviBudget> findSuiviBudgetStructureByEtatBudget(@Param("iddrp")long iddrp, @Param("idetat")long id);
 
     //Budget des buraux en attente de validation par la DRP
-    @Query(value = " SELECT * FROM suivi_budget AS sb LEFT JOIN budget AS bd ON sb.id_budget= bd.id " +
+   /* @Query(value = " SELECT * FROM suivi_budget AS sb LEFT JOIN budget AS bd ON sb.id_budget= bd.id " +
             " LEFT JOIN structure AS s ON s.id=bd.id_structure" +
             " WHERE s.id_drp=:idDrp AND annee=2021 AND sb.id_etat_budget=2  AND bureau=1  " , nativeQuery = true)
-    public Collection<SuiviBudget> findBudgetbyDrp(@Param("idDrp")long iddrp);
+
+    */
+
+    @Query(value = " SELECT * FROM suivi_budget AS sb, budget AS bd, structure AS s WHERE sb.id_budget=bd.id AND bd.id_structure=s.id AND bd.annee=2021 AND s.id_drp=:iddrp " , nativeQuery = true)
+    public Collection<SuiviBudget> findBudgetbyDrp(@Param("iddrp")long iddrp);
 
     //Liste DRP avec un Budget en attente de validation par la DCG
     @Query(value = "SELECT * FROM suivi_budget AS sb LEFT JOIN budget AS bd ON sb.id_budget= bd.id " +
