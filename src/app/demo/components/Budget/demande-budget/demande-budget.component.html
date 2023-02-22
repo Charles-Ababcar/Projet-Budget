@@ -1,0 +1,29 @@
+<p-card   [style]="{width: '700px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+       <div>
+        <h4 class="card-title">Demande de budget de {{infosUser.structure.nomStructure}}
+        </h4>
+       </div>     
+    </ng-template>
+
+    <ng-template pTemplate="body">
+        
+        <form #userForm="ngForm" (ngSubmit)=onFormSubmit(userForm) class="form-horizontal">
+            <div class="grid p-fluid">
+                <div class="field col-6" *ngFor="let compteb of compte">
+                    <label for="minmax-buttons" style="color: darkblue;">{{compteb.libelle}} </label>
+                    <p-inputNumber   id={{compteb.libelle}}  name={{compteb.libelle}} ngModel=0.toLocaleString() ></p-inputNumber><span style="float: right;">FCFA</span>
+                </div>
+            </div>
+            
+            <p-button mat-raised-button class="btn btn-fill btn-rose" type="submit" [disabled]="!userForm.valid">Envoyer la demande</p-button>
+
+        </form>  
+    </ng-template> 
+    
+    <!-- <div class="card">
+    <h5>Template</h5>
+    <button type="button" pButton pRipple (click)="showConfirm()" label="Confirm" class="ui-button-warning"></button>
+    </div> -->
+
+</p-card>
