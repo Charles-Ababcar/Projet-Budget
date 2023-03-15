@@ -5,7 +5,11 @@ import { RouterModule } from '@angular/router';
     imports: [RouterModule.forChild([
 		 { path: 'demande-budget', loadChildren: () => import('./demande-budget/demandeBudget.module').then(m => m.DemandeBudgetModule) },
 		 { path: 'demande-budget-drp', loadChildren: () => import('./demande-budget-drp/demandeDrp.module').then(m => m.DemandeBudgetDrpModule) },
-         { path: 'budget-valider', loadChildren: () => import('./budget-valider/budget-valider.module').then(m => m.BudgetValiderModule) },
+         { path: 'budget-valider', loadChildren: () => import('./budget-valider/budget-valider.module').then(m => m.BudgetValidzerModule) },
+         { path: 'bureauvalider', loadChildren: () => import('./bureauvalide/bureauvalide.module').then(m => m.BureauvaliderModule) },
+         { path: 'budgetstructure', loadChildren: () => import('./budgetstructure/budgetstructure.module').then(m => m.BudgetStructureModule) },
+
+
 
 
 		 // { path: 'crud', loadChildren: () => import('./crud/crud.module').then(m => m.CrudModule) },

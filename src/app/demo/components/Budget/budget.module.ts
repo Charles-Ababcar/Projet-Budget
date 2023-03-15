@@ -9,7 +9,9 @@ import { BudgetsRoutingModule } from './budget-routing.module';
     ],
     declarations: [
      
-    ],
+  
+  
+  ],
    
 })
 export class BudgetsModule { }

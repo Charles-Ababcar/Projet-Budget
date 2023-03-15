@@ -18,8 +18,11 @@ export class AppMenuComponent implements OnInit {
                 label: 'Gestion Budgetaire',
                 items: [
                     { label: 'Demande Budget', icon: 'pi pi-fw pi-home', routerLink: ['/Budget/demande-budget'] },
-                   { label: 'DCG', icon: 'pi pi-fw pi-id-card', routerLink: ['/Budget/demande-budget-drp'] },
-                   { label: 'Budget-valide', icon: 'pi pi-fw pi-id-card', routerLink: ['/Budget/budget-valider'] }
+                   { label: 'DCG', icon: 'pi pi-fw pi-user', routerLink: ['/Budget/demande-budget-drp'] },
+                   { label: 'Budget-valide', icon: 'pi pi-fw pi-dollar', routerLink: ['/Budget/budget-valider'] },
+                   { label: 'Bureau-valide', icon: 'pi pi-fw pi-id-card', routerLink: ['/Budget/bureauvalider'] },
+                   { label: 'Mon Budget', icon: 'pi pi-fw pi-id-card', routerLink: ['/Budget/budgetstructure'] }
+
 
 
                 ]

@@ -16,8 +16,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import {CardModule} from 'primeng/card';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
-import { BudgetValiderRoutingModule } from './budget-valider-routing.module';
-import { BudgetValiderComponent } from './budget-valider.component';
+import { BureauvaliderRoutingModule } from './bureauvalide-routing.module';
+import { BureauvalideComponent } from './bureauvalide.component';
 
 
 
@@ -26,7 +26,7 @@ import { BudgetValiderComponent } from './budget-valider.component';
 @NgModule({
 	imports: [
 		CommonModule,
-		BudgetValiderRoutingModule,
+        BureauvaliderRoutingModule,
 		TableModule,
 		FileUploadModule,
 		FormsModule,
@@ -45,7 +45,7 @@ import { BudgetValiderComponent } from './budget-valider.component';
 		ConfirmPopupModule
 		
 	],
-	declarations: [BudgetValiderComponent]
+	declarations: [BureauvalideComponent]
 })
-export class BudgetValidzerModule {
+export class BureauvaliderModule {
 }

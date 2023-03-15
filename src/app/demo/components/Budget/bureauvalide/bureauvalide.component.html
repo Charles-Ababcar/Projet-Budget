@@ -1,27 +1,36 @@
 <div class="card" *ngIf=" nonvide===true">
     <!-- <h5>Implicit Pagination</h5> -->
-    <p-table [value]="budget" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{'min-width': '40rem'}"
+    <p-table [value]="donnee" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{'min-width': '40rem'}"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
        
 		<ng-template pTemplate="header" >
             <tr>
-                <th style="width:45%">Nom du Bureau</th>
-                <th style="width:45%">Budget demande</th>
-                <th style="width:45%">Voir details</th>
+                <th style="width:30%;background-color: dodgerblue;">NOM DU BUREAU</th>
+                <th style="width:30%;background-color: dodgerblue;">ANNEE</th>
+                <th style="width:30%;background-color: dodgerblue;">MONTANT</th>
+                <th style="width:30%;background-color: dodgerblue;">Voir details</th>
                 
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-bud>
+        <ng-template pTemplate="body" let-d>
             <tr>
-                <td>{{bud.budget.structure.nomStructure}}</td>
-                <td>{{bud.budget.montant_propose_bureau}}</td>
+                <td>{{d.budget.structure.nomStructure}}</td>
+                <td>{{d.budget.annee }}</td>
+           
+                <td *ngIf=" infosUser.idrole===2">
+                    {{d.budget.montant_propose_drp}}
+			    </td>
+            
+                <td *ngIf=" infosUser.idrole===1">
+                    {{d.budget.montant_propose_bureau}}
+			    </td>
                 <td>
-					<button pButton pRipple type="button" label="Voir" class="p-button-rounded p-button-info" (click)="afficheCompte(bud)"></button>
+					<button pButton pRipple type="button" label="Voir" class="p-button-rounded p-button-info" (click)="afficheCompte(d)"></button>
 
 			    </td>
                 
-				
-            </tr>
+
+         </tr>
         </ng-template>
         <ng-template pTemplate="paginatorleft">
             <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
@@ -29,41 +38,33 @@
         <ng-template pTemplate="paginatorright">
             <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
         </ng-template>
-		</p-table>
-	</div>
-
-	<div class="card"  *ngIf=" nonvide===false" style="width:50em;height:15em">
-	
-	
-        
-			
-			    <i class="material-icons" data-notify="icon">notifications</i>
-			
-			<tbody>
-				
-				<p style="color:blue;text-align:justify;font-size:30px;"> <b>Aucun budget n'est en attente de validation! </b></p>
-			</tbody>
-			
-	
-				
-        <!-- </ng-template> -->
-        <!-- <ng-template pTemplate="paginatorleft">
-            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
-        </ng-template>
-        <ng-template pTemplate="paginatorright">
-            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
-        </ng-template>
-    -->
+	</p-table>
 </div>
-<p-dialog [(visible)]="productDialog" [style]="{width: '600px',height:'550px'}" header=" Details Budget" [modal]="true" class="p-fluid">
-	<p-table [value]="currentCompte" dataKey="id" editMode="row">
+
+    <div  class="card" *ngIf=" vide===false" style="width:50em;height:15em">
+    
+                    <i class="material-icons" data-notify="icon">notifications</i>
+                
+                <tbody>
+                    
+                    <p style="color:blue;text-align:justify;font-size:30px;"> <b>Votre budget est en attente de validation! </b></p>
+                </tbody>
+                
+    </div>
+
+
+    <div   *ngIf=" vide===true" style="width:50em;height:15em">
+			
+
+     <p-dialog [(visible)]="productDialog" [style]="{width: '600px',height:'550px'}" header=" Details Budget" [modal]="true" class="p-fluid">
+    	<p-table [value]="currentCompte" dataKey="id" editMode="row">
 	   
-		   <ng-template pTemplate="header">
+		   <ng-template pTemplate="header"  >
 			   <tr>
 				  
-				   <th style="width:45%">Libelle</th>
-				   <th style="width:45%">Montant</th>
-				   <th style="width:45%">Montant proposé</th>
+				   <th style="width:45%;background-color: dodgerblue;">Libelle</th>
+				   <th style="width:45%;background-color: dodgerblue;">Montant</th>
+				   <th style="width:45%;background-color: dodgerblue;">NOUVEAU MONTANT</th>
 			   </tr>
 		   </ng-template>
 		  <ng-template pTemplate="body" let-c>
@@ -71,14 +72,23 @@
 			   <td>
 				{{ c.compteBudget.libelle}}
 			   </td>
-		
-			   <td>
-				   {{ c.montantProposeBureau}}
-			   </td>
-			   <td >
-					<!-- <input matInput placeholder="saisir montant" type="number" [(ngModel)]="c.montantProposeDrp"> -->
+              
+               <td *ngIf=" infosUser.idrole===2">
+                {{ c.montantProposeDrp}}
+                </td>
+             
+         
+                <td *ngIf=" infosUser.idrole===1">
+                    {{ c.montantProposeBureau}}
+                </td>
+
+			 
+			   <td *ngIf="idroleuser===2" >
 					<p-inputNumber  placeholder="saisir montant" style="width:10em" type="submit" [min]="0" [(ngModel)]="c.montantProposeDrp"></p-inputNumber>
 
+			   </td>
+               <td  *ngIf="idroleuser===1">
+					<p-inputNumber  placeholder="saisir montant" style="width:10em" type="submit" [min]="0" [(ngModel)]="c.montantProposeBureau"></p-inputNumber>
 			   </td>
 			   
 		   </tr>
@@ -89,8 +99,10 @@
 		   <button pButton pRipple label="Anuler" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="hideDialog()"></button>
 		   <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-rounded p-button-success" (click)="update()"></button>
 	   </ng-template>
-   
+    
    </p-dialog>
+</div>
+
 <!-- fin  -->
 
  
